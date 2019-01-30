@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MessageForm from "./MessageForm";
 import MessageList from "./MessageList";
+import TwilioChat from "twilio-chat";
 import $ from "jquery";
 import "./App.css";
 
@@ -18,6 +19,7 @@ class App extends Component {
     this.getToken()
       .then(this.createChatClient)
       .then(this.joinGeneralChannel)
+      .then(this.configureChannelEvents)
       .catch(error => {
         this.addMessage({ body: `Error: ${error.message}` });
       });
@@ -25,9 +27,7 @@ class App extends Component {
 
   getToken = () => {
     return new Promise((resolve, reject) => {
-      this.setState({
-        messages: [...this.state.messages, { body: `Connecting...` }]
-      });
+      this.addMessage({ body: "Connecting..." });
 
       $.getJSON("/token", token => {
         this.setState({ username: token.identity });
@@ -69,15 +69,19 @@ class App extends Component {
 
               resolve(channel);
             })
-            .catch(() => reject(Error("Could not find general channel.")));
+            .catch(() => this.createGeneralChannel(chatClient));
         })
         .catch(() => reject(Error("Could not get channel list.")));
     });
   };
 
-  handleNewMessage = text => {
-    this.setState({
-      messages: [...this.state.messages, { me: true, author: "Me", body: text }]
+  createGeneralChannel = chatClient => {
+    return new Promise((resolve, reject) => {
+      this.addMessage({ body: "Creating general channel..." });
+      chatClient
+        .createChannel({ uniqueName: "general", friendlyName: "General Chat" })
+        .then(() => this.joinGeneralChannel(chatClient))
+        .catch(() => reject(Error("Could not create general channel.")));
     });
   };
 
@@ -88,6 +92,26 @@ class App extends Component {
     };
     this.setState({
       messages: [...this.state.messages, messageData]
+    });
+  };
+
+  handleNewMessage = text => {
+    if (this.state.channel) {
+      this.state.channel.sendMessage(text);
+    }
+  };
+
+  configureChannelEvents = channel => {
+    channel.on("messageAdded", ({ author, body }) => {
+      this.addMessage({ author, body });
+    });
+
+    channel.on("memberJoined", member => {
+      this.addMessage({ body: `${member.identity} has joined the channel.` });
+    });
+
+    channel.on("memberLeft", member => {
+      this.addMessage({ body: `${member.identity} has left the channel.` });
     });
   };
 
