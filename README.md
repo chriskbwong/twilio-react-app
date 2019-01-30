@@ -22,6 +22,6 @@ npm start
 
 **Credit where credit is due:**
 
-**Original starting point:** https://github.com/kevinthompson/react-programmable-chat
+[Original starting point:](https://github.com/kevinthompson/react-programmable-chat) made by Kevin Thompson
 
 This demo application was created as a supplement to a post on the [Twilio blog](https://www.twilio.com/blog).
