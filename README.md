@@ -1,27 +1,26 @@
-# React Programmable Chat
+# Twilio Programmable Chat with KendoReact Conversational UI and React
 
-![](https://raw.githubusercontent.com/kevinthompson/react-programmable-chat/master/example.jpg)
+This is an example application that sets up [Twilio Programmable Chat](https://www.twilio.com/docs/chat) with a React and [KendoReact UI](https://www.telerik.com/kendo-react-ui/).
 
-**Install application dependencies:**
+Learn more with the blog post [Build a chat app with Twilio and KendoReact](https://www.twilio.com/blog/chat-app-twilio-kendoreact).
 
-```
+## Using this project
+
+Clone the project, change into the directory and install the dependencies.
+
+```bash
+git clone https://github.com/philnash/twilio-chat-kendo-react.git
+cd twilio-chat-kendo-react
 npm install
 ```
 
-**Start the token server in one terminal instance:**
+Copy the `.env.example` file to `.env` and fill in with your Twilio credentials.
 
-```
-node server.js
-```
 
-**Start the React application build process in another terminal instance:**
+Run the application together with the command:
 
-```
-npm start
+```bash
+npm run dev
 ```
 
-**Credit where credit is due:**
-
-[Original starting point:](https://github.com/kevinthompson/react-programmable-chat) made by Kevin Thompson
-
-This demo application was created as a supplement to a post on the [Twilio blog](https://www.twilio.com/blog).
+The React application will run on port 3000 and the server port 3001. Open [localhost:3000](http://localhost:3000) to log in and use the chat application.
