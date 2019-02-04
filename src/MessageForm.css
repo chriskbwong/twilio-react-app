@@ -1,6 +1,6 @@
 .MessageForm {
   display: flex;
-  background: #ccc;
+  background: #fff;
 }
 
 .MessageForm .input-container {
@@ -13,10 +13,11 @@
   margin: 1px 1px 1px 0;
 }
 
-.MessageForm input, .MessageForm button {
+.MessageForm input,
+.MessageForm button {
   background: #fff;
   border-radius: 3px;
-  border: 1px solid #ccc;
+  border: 1px solid #fff;
   box-sizing: border-box;
   font-size: inherit;
   height: 100%;
