@@ -1,26 +1,54 @@
-# Twilio Programmable Chat with KendoReact Conversational UI and React
+# React Programmable Chat
 
-This is an example application that sets up [Twilio Programmable Chat](https://www.twilio.com/docs/chat) with a React and [KendoReact UI](https://www.telerik.com/kendo-react-ui/).
+![](https://raw.githubusercontent.com/kevinthompson/react-programmable-chat/master/example.jpg)
 
-Learn more with the blog post [Build a chat app with Twilio and KendoReact](https://www.twilio.com/blog/chat-app-twilio-kendoreact).
+This demo application was created as a supplement to a post on 
+the [Twilio blog](https://www.twilio.com/blog).
 
-## Using this project
+## Required Credentials
 
-Clone the project, change into the directory and install the dependencies.
+* Account SID: [Twilio Console](https://www.twilio.com/console).
+* API Key & Secret: [Twilio Console – API Keys](https://www.twilio.com/console/runtime/api-keys).
+* Chat Service SID: [Twilio Console – Chat Dashboard](https://www.twilio.com/console/chat/dashboard).
 
-```bash
-git clone https://github.com/philnash/twilio-chat-kendo-react.git
-cd twilio-chat-kendo-react
+## Setting Up The Application
+
+**Clone the repository:**
+
+```
+git clone https://github.com/kevinthompson/react-programmable-chat.git
+```
+
+**Create your `.env` file:**
+
+```
+cd react-programmable-chat
+cp .env.sample .env
+```
+
+**Define your environment variables:**
+
+```
+TWILIO_ACCOUNT_SID=
+TWILIO_API_KEY=
+TWILIO_API_SECRET=
+TWILIO_CHAT_SERVICE_SID=
+```
+
+**Install application dependencies:**
+
+```
 npm install
 ```
 
-Copy the `.env.example` file to `.env` and fill in with your Twilio credentials.
+**Start the token server in one terminal instance:**
 
-
-Run the application together with the command:
-
-```bash
-npm run dev
+```
+node server.js
 ```
 
-The React application will run on port 3000 and the server port 3001. Open [localhost:3000](http://localhost:3000) to log in and use the chat application.
+**Start the React application build process in another terminal instance:**
+
+```
+npm start
+```
