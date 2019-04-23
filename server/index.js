@@ -21,7 +21,7 @@ const sendTokenResponse = (token, res) => {
 app.get('/api/greeting', (req, res) => {
   const name = req.query.name || 'World';
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
+  res.send(JSON.stringify({ greeting: `Hello ${name} welcome to the chat app!` }));
 });
 
 app.get('/chat/token', (req, res) => {
